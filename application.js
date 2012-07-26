@@ -13,10 +13,31 @@ app.listen(port);
 var fileContent = "";
 var clients = {};
 var tickCollection = {};
-
 var basicSpeed = 15;
 
-var fileContent = fs.readFileSync(__dirname + '/letter.html', 'ascii');
+var rawHtml = fs.readFileSync(__dirname + '/letter.html', 'ascii');
+
+function parseHtmlToArray(htmlContent) {
+    var curPos = 0;
+    var arr = [];
+    while (curPos <= htmlContent.length) {
+        var nextChunk = htmlContent.substr(curPos++, 1);
+        if (nextChunk === "<") {
+            var nextPlusOne = "";
+
+            while (nextPlusOne != ">") {
+                nextPlusOne = htmlContent.substr(curPos++, 1)
+                nextChunk += nextPlusOne;
+            }
+
+        }
+        arr.push(nextChunk);
+    }
+
+    return arr;
+}
+
+var htmlArray = parseHtmlToArray(rawHtml);
 
 
 function handler(req, res) {
@@ -32,17 +53,18 @@ io.sockets.on('connection', function(socket) {
         broadCast(socket.id)
     }, 200);
 
-    socket.on("change-speed", function(data){
-      clients[this.id].speed = basicSpeed  / data.speed;
+    socket.on("change-speed", function(data) {
+        clients[this.id].speed = basicSpeed / data.speed;
     })
 });
 
 var broadCast = function(socketId) {
 
         var client = clients[socketId];
-        if (client.speed > 0){
-          if (fileContent.length > client.location) {
-              var nextChunk = fileContent.substr(++client.location, 1);
+        if (client.speed > 0) {
+            if (htmlArray.length > client.location) {
+
+/*              var nextChunk = fileContent.substr(++client.location, 1);
               if (nextChunk === "<") {
                   var nextPlusOne = "";
 
@@ -50,9 +72,9 @@ var broadCast = function(socketId) {
                       nextPlusOne = fileContent.substr(++client.location, 1)
                       nextChunk += nextPlusOne;
                   }
-              }
-              client.socket.emit("broadcast_msg", nextChunk);
-          }
+              }*/
+                client.socket.emit("broadcast_msg", htmlArray[client.location++]);
+            }
         }
         var wait = Math.abs(Math.random() * (client.speed * 10))
         clearTimeout(tickCollection[socketId]);
@@ -66,7 +88,7 @@ var broadCast = function(socketId) {
 
 function TypeWriterClient(socket) {
     this.socket = socket;
-    this.location = -1;
+    this.location = 0;
     this.speed = basicSpeed;
     this.direction = "F";
 }
