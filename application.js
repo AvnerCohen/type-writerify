@@ -14,6 +14,8 @@ var fileContent = "";
 var clients = {};
 var tickCollection = {};
 
+var basicSpeed = 15;
+
 var fileContent = fs.readFileSync(__dirname + '/letter.html', 'ascii');
 
 
@@ -29,25 +31,30 @@ io.sockets.on('connection', function(socket) {
     tickCollection[socket.id] = setTimeout(function() {
         broadCast(socket.id)
     }, 200);
+
+    socket.on("change-speed", function(data){
+      clients[this.id].speed = basicSpeed  / data.speed;
+    })
 });
 
 var broadCast = function(socketId) {
 
         var client = clients[socketId];
+        if (client.speed > 0){
+          if (fileContent.length > client.location) {
+              var nextChunk = fileContent.substr(++client.location, 1);
+              if (nextChunk === "<") {
+                  var nextPlusOne = "";
 
-        if (fileContent.length > client.location) {
-            var nextChunk = fileContent.substr(++client.location, 1);
-            if (nextChunk === "<") {
-                var nextPlusOne = "";
-
-                while (nextPlusOne != ">") {
-                    nextPlusOne = fileContent.substr(++client.location, 1)
-                    nextChunk += nextPlusOne;
-                }
-            }
-            client.socket.emit("broadcast_msg", nextChunk);
+                  while (nextPlusOne != ">") {
+                      nextPlusOne = fileContent.substr(++client.location, 1)
+                      nextChunk += nextPlusOne;
+                  }
+              }
+              client.socket.emit("broadcast_msg", nextChunk);
+          }
         }
-        var wait = Math.abs(Math.random() * (client.speed * 100))
+        var wait = Math.abs(Math.random() * (client.speed * 10))
         clearTimeout(tickCollection[socketId]);
         tickCollection[socketId] = setTimeout(function() {
             broadCast(socketId)
@@ -58,8 +65,8 @@ var broadCast = function(socketId) {
 
 
 function TypeWriterClient(socket) {
-
     this.socket = socket;
     this.location = -1;
-    this.speed = 1.5;
+    this.speed = basicSpeed;
+    this.direction = "F";
 }

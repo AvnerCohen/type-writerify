@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" media="screen" href="./styles.css">
+    <link href='http://fonts.googleapis.com/css?family=Aldrich' rel='stylesheet' type='text/css' />
     <script type="text/javascript" src="http://www.google.com/jsapi">
         
     </script>
@@ -20,20 +21,37 @@
               // Establish the connection with the server
      var socket = io.connect('http://localhost:9000');
      var totalString =  "";
-     var defaultSpeed= 1.5;
           // on every message recived we print the new datas inside the #broadcast-msg div
           socket.on('broadcast_msg', function(data) {
                 totalString+= data;
               $('#broadcast-msg').html(totalString);
           });
+            $(document).ready(function(){
+                    $(document.body).on("click", "button.change-speed", function(){
+                        var speed = $(this).attr("data-speed")
+                         socket.emit("change-speed", {speed : speed});
+                         console.log("New speed:" + speed);
+                    });
+                });
     </script>
+    <style>
+    .change-speed{
+        position:relative;
+        top:10px;
+        font-family: 'Aldrich';
+        font-size: 16px;
+        font-weight: 300;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    </style>
 </head>
 <body>
     <div id="container" dir="ltr">
         <header id="header">
-            <h2>
-                So this is what's up:
-            </h2>
+            <div style="width:100%;height:60px;text-align:center;background-color:white;color:black;">
+                  <button class="change-speed" data-speed="-1">STOP</button> <button class="change-speed" data-speed="1">NORMAL</button> <button class="change-speed" data-speed="4">X4</button> <button class="change-speed" data-speed="8">X8</button> <button class="change-speed" data-speed="16">X16</button> <button class="change-speed" data-speed="32">X32</button>
+            </div>
             <div id="broadcast-msg" style="border:1px solid black">
             </div>
         </header>
