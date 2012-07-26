@@ -9,8 +9,7 @@ var io = require('socket.io').listen(app, {
 var port = process.env.PORT || 9000;
 app.listen(port);
 
-// on server started we can load our client.html page
-var fileContent = "";
+
 var clients = {};
 var tickCollection = {};
 var basicSpeed = 15;
@@ -33,7 +32,7 @@ function parseHtmlToArray(htmlContent) {
         }
         arr.push(nextChunk);
     }
-
+    console.log("Static letter array.length = " + arr.length);
     return arr;
 }
 
@@ -56,33 +55,36 @@ io.sockets.on('connection', function(socket) {
     socket.on("change-speed", function(data) {
         clients[this.id].speed = basicSpeed / data.speed;
     })
+    socket.on("change-direction", function(data) {
+        clients[this.id].direction = data;
+    })
 });
 
-var broadCast = function(socketId) {
+function broadCast(socketId) {
 
-        var client = clients[socketId];
-        if (client.speed > 0) {
+    var client = clients[socketId];
+    if (client.speed > 0) {
+        var nextChunk = ""
+        if (client.direction === "F") {
             if (htmlArray.length > client.location) {
+                nextChunk = htmlArray[client.location++];
+            }
+        } else {
+            if (client.location > 0) {
+                nextChunk = htmlArray[client.location--];
 
-/*              var nextChunk = fileContent.substr(++client.location, 1);
-              if (nextChunk === "<") {
-                  var nextPlusOne = "";
-
-                  while (nextPlusOne != ">") {
-                      nextPlusOne = fileContent.substr(++client.location, 1)
-                      nextChunk += nextPlusOne;
-                  }
-              }*/
-                client.socket.emit("broadcast_msg", htmlArray[client.location++]);
             }
         }
-        var wait = Math.abs(Math.random() * (client.speed * 10))
-        clearTimeout(tickCollection[socketId]);
-        tickCollection[socketId] = setTimeout(function() {
-            broadCast(socketId)
-        }, wait);
-
+        console.log(client.location + ":[" + nextChunk + "]");
+        client.socket.emit("broadcast_msg", nextChunk);
     }
+    var wait = Math.abs(Math.random() * (client.speed * 10))
+    clearTimeout(tickCollection[socketId]);
+    tickCollection[socketId] = setTimeout(function() {
+        broadCast(socketId)
+    }, wait);
+
+}
 
 
 
