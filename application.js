@@ -18,6 +18,7 @@ var rawHtml = fs.readFileSync(__dirname + '/letter.html', 'ascii');
 
 function parseHtmlToArray(htmlContent) {
     var curPos = 0;
+    console.time("Array generation")
     var arr = [];
     while (curPos <= htmlContent.length) {
         var nextChunk = htmlContent.substr(curPos++, 1);
@@ -32,7 +33,8 @@ function parseHtmlToArray(htmlContent) {
         }
         arr.push(nextChunk);
     }
-    console.log("Static letter array.length = " + arr.length);
+    console.log("Pre created array.length = " + arr.length);
+    console.timeEnd("Array generation");
     return arr;
 }
 
