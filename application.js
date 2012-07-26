@@ -32,10 +32,19 @@ var broadCastToClients = function() {
         for (var c in clients) {
             var client = clients[c];
             if (fileContent.length > client[1]) {
-                client[0].emit("broadcast_msg", fileContent.substr(client[1]++, 1));
+                  var nextChunk = fileContent.substr(++client[1], 1);
+                  if (nextChunk === "<"){
+                    var nextPlusOne= "";
+
+                    while(nextPlusOne != ">"){
+                      nextPlusOne = fileContent.substr(++client[1], 1)
+                      nextChunk += nextPlusOne;
+                    }
+                  }
+                client[0].emit("broadcast_msg", nextChunk);
             }
         }
-      var wait = Math.abs(Math.random()*300)        
+      var wait = Math.abs(Math.random()*150)        
       clearTimeout(tick);
       tick = setTimeout(broadCastToClients, wait);
 
