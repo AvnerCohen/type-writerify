@@ -1,0 +1,11 @@
+{
+  "name": "Type-writerify",
+  "description": "Showcase",
+  "version": "0.0.2",
+  "author": "Avner Cohen <israbirding@gmail.com>",
+  "dependencies": {
+     sssssecstatic"": ">=2.5.x",
+     "node-pusher": ">=0.0.2"
+  },
+  "engines": {  "node": "0.6.x" }
+}
