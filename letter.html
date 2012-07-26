@@ -1,0 +1,37 @@
+ <div class="new" id="v2">
+    <h3>HTML5 Boilerplate is 3.0!</h3>
+    <small>Monday, Feb 6th, 2012</small>
+                <p>The key feature of this update is making Boilerplate smaller. Most of the changes have been working towards that. We have significant work done to our build script, so much so that we thought it <a href="https://github.com/h5bp/ant-build-script">deserved its own repository</a>. Meanwhile, here is what's new.</p>
+
+    <div class="changelog">
+      <h3>Changelog</h3>
+      <p>3.0 gets some major updates <a href="https://github.com/h5bp/html5-boilerplate/compare/v2.0...v3.0">Here are all the commits since last release</a>.</p>
+      <p><a href="http://html5boilerplate.com/docs/FAQs/#do-i-need-to-upgrade-my-sites-to-a-new-version">Should you upgrade existing sites</a>? Short answer: nah, you're good.</p>
+
+			<h4>Significant changes</h4>
+
+			<ul class="sigcommits">
+				 <li>Removed a lot of folders: <code>/demos</code>, <code>/test</code>, and <code>/js/mylibs</code>.
+
+         <li><a href="https://github.com/h5bp/ant-build-script">Build script is now a separate project</a>, <a href="https://github.com/h5bp/node-build-script">node.js build script</a> & <a href="https://github.com/h5bp/rake-build-script">ruby/rake build scripts</a> introduced. Read about <a href="/docs/#build-scripts">how to get and use the build script</a>
+         <li>Respond.js is no longer available by default. </a>
+       </ul>
+
+
+			<h4>index.html</h4>
+      <ul>
+				<li> Chromeframe no longer applied via script. IE6 users are served links to install Chromeframe or visit Browsehappy to choose an alternative browser.  
+        <li>Meta viewport updated to prevent iOS scaling bugs.  
+        <li><code>html</code> IE classes now target lower than a specific version rather than explicitly specified versions.  
+        <li>Switch back to the optimized asynchronous Google Analytics snippet instead of using <code>Modernizr.load</code>.  
+        <li>Drop <code>defer</code> from all scripts to avoid legacy IE bugs.
+        <li>Design of the 404 has been improved.
+      </ul>
+
+      <h4>style&shy;.css</h4>
+      <ul>
+        <li>Removed default font sizes and line heights to provide a much better robust default.  
+        <li>Additions made to normalize.css and to provide better default typography.
+        <li>More robust .ir helper class.
+        <li>No more forced scrollbars, this impedes projects like jQuery UI, and others in calculating widths.
+      </ul>

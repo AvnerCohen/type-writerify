@@ -1,7 +1,8 @@
 // Require dependencies
-var app = require('http').createServer(handler),
-    fs = require('fs'),
-    io = require('socket.io').listen(app, {
+var app = require('http').createServer(handler)
+    ,fs = require('fs')
+    ,ecstatic = require('ecstatic')(__dirname)
+    ,io = require('socket.io').listen(app, {
         log: false
     });
 
@@ -12,21 +13,13 @@ app.listen(port);
 var fileContent = "";
 var clients = {};
 
-var fileContent = fs.readFileSync(__dirname + '/sometext.txt', 'ascii');
+var fileContent = fs.readFileSync(__dirname + '/letter.html', 'ascii');
 
 
 function handler(req, res) {
-    fs.readFile(__dirname + '/type-writer.html', function(err, data) {
-        if (err) {
-            console.log(err);
-            res.writeHead(500);
-            return res.end('Error loading client.html');
-        }
-        res.writeHead(200);
-        res.end(data);
-    });
-}
 
+   ecstatic(req, res);
+}
 
 
 // creating a new websocket to keep the content updated without any AJAX request
