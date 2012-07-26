@@ -1,4 +1,68 @@
- <div class="new" id="v2">
+<div id="container" dir="ltr">
+    <header id="header">
+         <p class="lang" dir="ltr">Now offered in:
+           <a href="http://html5boilerplate.com" lang="en-us">English</a>
+           <a href="http://es.html5boilerplate.com" lang="es">Español</a>
+           <a href="http://de.html5boilerplate.com" lang="de-de">Deutsch</a>
+           <a href="http://br.html5boilerplate.com" lang="pt-br">Português</a>
+           <a href="http://fr.html5boilerplate.com" lang="fr-fr">Français</a>
+           <a href="http://it.html5boilerplate.com" lang="it">Italiano</a>
+           <a href="http://nl.html5boilerplate.com" lang="nl">Nederlands</a>
+           <a href="http://sr.html5boilerplate.com" lang="sr">Srpski</a>
+           <a href="http://ru.html5boilerplate.com" lang="ru">По-русски</a>
+           <a href="http://he.html5boilerplate.com" lang="he">עברית</a>
+           <a href="http://ja.html5boilerplate.com" lang="ja">日本語</a>
+         </p>
+         <h1>HTML5  <i>★</i> <b>Boilerplate</b></h1>
+         <h2>A rock-solid default for HTML5 awesome.</h2>
+
+    </header>
+
+    <div id="body">
+
+      <p>Download Boilerplate 3.0.2  <small>Updated Feb 19th</small></p>
+
+      <p class="dwn">
+        <span><a href="http://github.com/h5bp/html5-boilerplate/zipball/v3.0.2" name="default"><u>Download</u> Boilerplate </a> <small>Keep the hints and links</small></span>
+        <i>or</i>
+        <span><a href="http://github.com/h5bp/html5-boilerplate/zipball/v3.0.2stripped" name="stripped"><u>Download</u> Boilerplate "stripped"</a> <small>No comments, just the bizniss.</small></span>
+        <i>or</i>
+        <span><a id="builder-custom" href="#builder"><u>Customize</u> Boilerplate</a> <small>100% hipster.</small></span>
+      </p>
+
+      <div class="focus">
+        <div id="builder">
+          <div id="jquery">
+            <h4>jQuery</h4>
+            <label><input checked="" type="checkbox" name="jquery" id="jquerymin"> Minified</label>
+            <label><input type="checkbox" name="jquery" id="jquerydev"> Unminified</label>
+          </div>
+
+          <div id="config">
+            <h4>Server Config</h4>
+            <label><input checked="" type="checkbox" id="h5bp-htaccess"> .htaccess</label>
+            <label><input type="checkbox" id="h5bp-nginx"> nginx.conf</label>
+            <label><input type="checkbox" id="h5bp-webconfig"> web.config</label>
+          </div>
+          <div id="rest">
+            <h4>Others</h4>
+            <label><input checked="" type="checkbox" id="h5bp-iecond"> All IE classes</label>
+            <label><input checked="" type="checkbox" id="h5bp-scripts"> script.js &amp; plugin.js</label>
+            <label><input checked="" type="checkbox" id="h5bp-analytics"> Google Analytics Snippet</label>
+            <label><input checked="" type="checkbox" id="h5bp-build"> Ant Build Script</label>
+          </div>
+
+            <p><a href="http://2.jverrecchia-initializr.appspot.com/builder?mode=h5bp&amp;" id="builder-download" name="custom">Download!</a> Need more options? Visit <a href="http://initializr.com">Initializr</a></p>
+        </div>
+      </div>
+
+			<p class="social">
+					<a href="//html5boilerplate.com/docs/">Read the docs</a>
+					<a href="http://github.com/h5bp/html5-boilerplate">Contribute on Github </a>
+          <a href="http://twitter.com/h5bp">Follow on twitter</a>
+      </p>
+
+  <div class="new" id="v2">
     <h3>HTML5 Boilerplate is 3.0!</h3>
     <small>Monday, Feb 6th, 2012</small>
                 <p>The key feature of this update is making Boilerplate smaller. Most of the changes have been working towards that. We have significant work done to our build script, so much so that we thought it <a href="https://github.com/h5bp/ant-build-script">deserved its own repository</a>. Meanwhile, here is what's new.</p>
@@ -13,25 +77,97 @@
 			<ul class="sigcommits">
 				 <li>Removed a lot of folders: <code>/demos</code>, <code>/test</code>, and <code>/js/mylibs</code>.
 
-         <li><a href="https://github.com/h5bp/ant-build-script">Build script is now a separate project</a>, <a href="https://github.com/h5bp/node-build-script">node.js build script</a> & <a href="https://github.com/h5bp/rake-build-script">ruby/rake build scripts</a> introduced. Read about <a href="/docs/#build-scripts">how to get and use the build script</a>
-         <li>Respond.js is no longer available by default. </a>
-       </ul>
+         </li><li><a href="https://github.com/h5bp/ant-build-script">Build script is now a separate project</a>, <a href="https://github.com/h5bp/node-build-script">node.js build script</a> &amp; <a href="https://github.com/h5bp/rake-build-script">ruby/rake build scripts</a> introduced. Read about <a href="/docs/#build-scripts">how to get and use the build script</a>
+         </li><li>Respond.js is no longer available by default. 
+       </li></ul>
 
 
 			<h4>index.html</h4>
       <ul>
 				<li> Chromeframe no longer applied via script. IE6 users are served links to install Chromeframe or visit Browsehappy to choose an alternative browser.  
-        <li>Meta viewport updated to prevent iOS scaling bugs.  
-        <li><code>html</code> IE classes now target lower than a specific version rather than explicitly specified versions.  
-        <li>Switch back to the optimized asynchronous Google Analytics snippet instead of using <code>Modernizr.load</code>.  
-        <li>Drop <code>defer</code> from all scripts to avoid legacy IE bugs.
-        <li>Design of the 404 has been improved.
-      </ul>
+        </li><li>Meta viewport updated to prevent iOS scaling bugs.  
+        </li><li><code>html</code> IE classes now target lower than a specific version rather than explicitly specified versions.  
+        </li><li>Switch back to the optimized asynchronous Google Analytics snippet instead of using <code>Modernizr.load</code>.  
+        </li><li>Drop <code>defer</code> from all scripts to avoid legacy IE bugs.
+        </li><li>Design of the 404 has been improved.
+      </li></ul>
 
-      <h4>style&shy;.css</h4>
+      <h4>style­.css</h4>
       <ul>
         <li>Removed default font sizes and line heights to provide a much better robust default.  
-        <li>Additions made to normalize.css and to provide better default typography.
-        <li>More robust .ir helper class.
-        <li>No more forced scrollbars, this impedes projects like jQuery UI, and others in calculating widths.
+        </li><li>Additions made to normalize.css and to provide better default typography.
+        </li><li>More robust .ir helper class.
+        </li><li>No more forced scrollbars, this impedes projects like jQuery UI, and others in calculating widths.
+      </li></ul>
+
+
+      <h4>Project</h4>
+      <ul>
+        <li>Updated to Modernizr 2.5
+        </li><li>Updated to jQuery 1.7.1
+        </li><li>Improved .htaccess
+      </li></ul>
+		</div>
+  </div>
+
+		<div class="videos" id="videos">
+			<h3>Videos</h3>
+			<ul>
+				 <li><a href="http://www.youtube.com/watch?v=NMEB78VX2P0">
+					 <img src="/img/gettingstarted-thumb.jpg" alt="Video on Boilerplate">
+					 Ready to get started?</a> <strong>new!</strong></li>
+				<li><a href="http://www.youtube.com/watch?v=OXpCB3U_4Ig">
+					<img src="/img/buildscript-thumb.jpg" alt="Video on Boilerplate">
+					Intro to the Build Script</a> <strong>new!</strong></li>
+				<li><a href="http://www.youtube.com/watch?v=oDlsOyPKUTM">
+					<img src="/img/video-lowdown-thumb.jpg" alt="Video on Boilerplate">
+					Get the lowdown in 40 minutes, flat!</a>
+				</li>
+				<li><a href="http://www.youtube.com/watch?v=qyM37XKkmKQ">
+					<img src="/img/video-thumb.png" alt="Video on Boilerplate">
+					Dig deeper in 60 minutes</a></li>
+			</ul>
+		</div>
+	</div>
+    <footer id="footer">
+      <h3>Brought to you by</h3>
+      <p>
+      <a href="http://nicolasgallagher.com/"><img width="50" height="50" src="img/nicolas-gallagher.png" alt="">Nicolas Gallagher <br> <i>Front-End Web Developer</i></a>
+
+        <a href="http://nimbupani.com"><img width="50" height="50" src="img/divya-manian.png" alt="">Divya Manian <br><i>Open Web Vigilante</i></a>
+      <a href="http://drublic.de/"><img width="50" height="50" src="http://api.twitter.com/1/users/profile_image/drublic?size=normal" alt="">Hans Christian Reinl <br><i>Front end Developer</i></a>
+        <a href="http://www.blog.highub.com/"><img width="50" height="50" src="img/shichuan.png" alt="">Shichuan <br><i>Open Web Developer</i></a>
+
+        <a href="http://mathiasbynens.be/"><img width="50" height="50" src="img/mathias-bynens.png" alt="">Mathias Bynens <br><i>Freelance web developer</i></a>
+
+      </p>
+      <ul>
+        <li><a href="http://blog.mklog.fr/">Mickael Daniel</a></li>
+        <li><a href="http://twitter.com/verekia">Jonathan Verrecchia</a></li>
+        <li><a href="http://htmlcssjavascript.com/">Rob Larsen</a></li>
+        <li><a href="https://twitter.com/alrra">Cãtãlin Mariş</a></li>
+        <li><a href="http://paulirish.com/">Paul Irish</a></li>
+        <li><a href="http://mikewest.org/">Mike West</a></li>
+        <li><a href="https://github.com/h5bp/html5-boilerplate/contributors">More Contributors</a></li>
       </ul>
+
+      <p>It would not have been possible without the efforts of these superheroes:</p>
+
+      <ul>
+        <li><a href="http://www.phpied.com">Stoyan Stefanov</a></li>
+        <li><a href="http://www.splintered.co.uk/">Patrick H Lauke</a></li>
+        <li><a href="http://farukat.es/">Faruk Ateş</a></li>
+        <li><a href="http://remysharp.com/">Remy Sharp</a></li>
+        <li><a href="http://blog.amodernfable.com/">Adam McIntyre</a></li>
+        <li><a href="http://tjkdesign.com/">Thierry Koblentz</a></li>
+        <li><a href="http://miketaylr.com">Mike Taylor</a></li>
+        <li><a href="http://twitter.com/jon_neal">Jonathan Neal</a></li>
+        <li><a href="http://camendesign.com">Kroc Camen</a></li>
+        <li><a href="http://fontsquirrel.com">Ethan Dunham</a></li>
+        <li><a href="http://peter.sh">Peter Beverloo</a></li>
+        <li><a href="http://www.viget.com/inspire/">Viget</a></li>
+        <li><a href="http://stevesouders.com/">Steve Souders</a></li>
+        <li><a href="http://na.isobar.com/standards/">Isobar Creative Technology team</a></li>
+      </ul>
+    </footer>
+  </div>

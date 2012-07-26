@@ -18,8 +18,9 @@
     </script>
     <script>
               // Establish the connection with the server
-          var socket = io.connect('http://localhost:9000');
-        var totalString =  "";
+     var socket = io.connect('http://localhost:9000');
+     var totalString =  "";
+     var defaultSpeed= 1.5;
           // on every message recived we print the new datas inside the #broadcast-msg div
           socket.on('broadcast_msg', function(data) {
                 totalString+= data;
