@@ -56,7 +56,7 @@ io.sockets.on('connection', function(socket) {
         clients[this.id].speed = basicSpeed / data.speed;
     })
     socket.on("change-direction", function(data) {
-        clients[this.id].direction = data;
+        clients[this.id].direction = data.direction;
     })
 });
 
@@ -75,7 +75,6 @@ function broadCast(socketId) {
 
             }
         }
-        console.log(client.location + ":[" + nextChunk + "]");
         client.socket.emit("broadcast_msg", nextChunk);
     }
     var wait = Math.abs(Math.random() * (client.speed * 10))

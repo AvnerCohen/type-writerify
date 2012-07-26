@@ -28,12 +28,8 @@
                   if (direction === "F") {
                       totalString += data;
                   } else { //Rewind case.
-                    //Manage asynch scenrio where rewind has not yet hit the server
-                      if (totalString.lastIndexOf(data) != (totalString.length - data.length)){
-                          totalString += data;
-                      }else{
-                        totalString = totalString.substr(0, totalString.lastIndexOf(data));
-                      }
+                    //In rewind simply remove text based on sent length, otherwise Asynch nature of this makes it impossible to predict;
+                        totalString = totalString.substr(0, totalString.length - data.length);
                   }
                   $('#broadcast-msg').html(totalString);
               });
