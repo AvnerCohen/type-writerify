@@ -1,10 +1,10 @@
 // Require dependencies
-var app = require('http').createServer(handler)
-    ,fs = require('fs')
-    ,ecstatic = require('ecstatic')(__dirname)
-    ,io = require('socket.io').listen(app, {
-        log: false
-    });
+var app = require('http').createServer(handler);
+var fs = require('fs');
+var ecstatic = require('ecstatic')(__dirname);
+var io = require('socket.io').listen(app, {
+    log: false
+});
 
 var port = process.env.PORT || 9000;
 app.listen(port);
@@ -17,8 +17,7 @@ var fileContent = fs.readFileSync(__dirname + '/letter.html', 'ascii');
 
 
 function handler(req, res) {
-
-   ecstatic(req, res);
+    ecstatic(req, res);
 }
 
 
@@ -28,26 +27,26 @@ io.sockets.on('connection', function(socket) {
     clients[socket.id] = [socket, 0];
 });
 
-var broadCastToClients = function() {
+var broadCast = function() {
         for (var c in clients) {
             var client = clients[c];
             if (fileContent.length > client[1]) {
-                  var nextChunk = fileContent.substr(++client[1], 1);
-                  if (nextChunk === "<"){
-                    var nextPlusOne= "";
+                var nextChunk = fileContent.substr(++client[1], 1);
+                if (nextChunk === "<") {
+                    var nextPlusOne = "";
 
-                    while(nextPlusOne != ">"){
-                      nextPlusOne = fileContent.substr(++client[1], 1)
-                      nextChunk += nextPlusOne;
+                    while (nextPlusOne != ">") {
+                        nextPlusOne = fileContent.substr(++client[1], 1)
+                        nextChunk += nextPlusOne;
                     }
-                  }
+                }
                 client[0].emit("broadcast_msg", nextChunk);
             }
         }
-      var wait = Math.abs(Math.random()*150)        
-      clearTimeout(tick);
-      tick = setTimeout(broadCastToClients, wait);
+        var wait = Math.abs(Math.random() * 150)
+        clearTimeout(tick);
+        tick = setTimeout(broadCast, wait);
 
     }
 
-var tick = setTimeout(broadCastToClients, 200);
+var tick = setTimeout(broadCast, 200);
