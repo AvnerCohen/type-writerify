@@ -19,8 +19,12 @@
                 
     </script>
     <script>
+    var RAND_CLIENT = "${RAND_CLIENT}";
                       // Establish the connection with the server
                   var socket = io.connect(window.location.hostname);
+
+                  socket.emit("kickstart",{clientId : RAND_CLIENT});
+                  
                   var totalString = "";
                   var direction = "F";
                   // on every message recived we print the new datas inside the #broadcast-msg div
@@ -32,9 +36,6 @@
                           totalString = totalString.substr(0, totalString.length - data.length);
                       }
                       $('#broadcast-msg').html(totalString);
-
-
-
 
                   });
                   $(document).ready(function() {

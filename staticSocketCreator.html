@@ -1,5 +1,12 @@
      <script>
-        document.write('<script src="'+window.location+'socket.io/socket.io.js">"</script>"');
+        document.write('<script src='+window.location.origin+'/socket.io/socket.io.js></s'+'cript>"');
                      // Establish the connection with the server
-                  var socket = io.connect(window.location.hostname);
-   </script>
+     </script>
+    <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+     <script>
+     	var socket;
+     	window.onload = function(){
+     	        socket = io.connect(window.location.hostname);
+     	    }
+        google.load("jquery", "1");
+   	</script>
