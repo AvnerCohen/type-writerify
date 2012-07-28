@@ -8,6 +8,7 @@ var io = require('socket.io').listen(app, {
 var url = require('url');
 var request = require('request');
 
+
 io.configure(function() {
     io.set("transports", ["xhr-polling"]);
     io.set("polling duration", 10);
@@ -37,9 +38,16 @@ function pipeOtherSite(res, url) {
     request(url, function(error, response, body) {
         if (!error && response.statusCode == 200) {
             res.writeHead(200, { "Content-Type": "text/html" });
-            res.end(body);
+            res.end(rewriteOriginHostToTags(body, url));
         }
     })
+}
+
+
+function rewriteOriginHostToTags(html, baseUrl){
+
+ html = html.replace(/<head>|<HEAD>/, "<head>"+ "\n<base href=\""+baseUrl+"\"/>");
+ return html;
 }
 
 
