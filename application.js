@@ -14,9 +14,6 @@ io.configure(function() {
 });
 
 
-
-
-
 var port = process.env.PORT || 9000;
 app.listen(port);
 
@@ -36,7 +33,13 @@ function handler(req, res) {
 
 
 function pipeOtherSite(res, url) {
-    request.get(url).pipe(res);
+ //   request.get(url).pipe(res);
+    request(url, function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+            res.writeHead(200, { "Content-Type": "text/html" });
+            res.end(body);
+        }
+    })
 }
 
 
