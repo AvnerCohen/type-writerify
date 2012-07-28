@@ -68,7 +68,12 @@ function pipeOtherSite(res, url) {
 
 function rewriteOriginHostToTags(html, baseUrl) {
 
-    html = html.replace(/<head>|<HEAD>/, "<head>" + "\n<base href=\"" + baseUrl + "\"/>" + "\n");
+    var url = baseUrl;
+    if (baseUrl.indexOf("/") != baseUrl.length)
+        {
+            url = baseUrl.substring(0, baseUrl.lastIndexOf("/"));
+        }
+    html = html.replace(/<head>|<HEAD>/, "<head>" + "\n<base href=\"" + url + "\"/>" + "\n");
 
     return html;
 }
@@ -169,7 +174,6 @@ function broadCast(socketId) {
             }
         }
         client.socket.emit("broadcast_msg", nextChunk);
-        console.log(nextChunk);
     }
     var wait = Math.abs(Math.random() * (client.speed * 10))
     clearTimeout(tickCollection[socketId]);
