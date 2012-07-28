@@ -5,14 +5,43 @@ var ecstatic = require('ecstatic')(__dirname);
 var io = require('socket.io').listen(app, {
     log: false
 });
+var url = require('url');
+var request = require('request');
 
-io.configure(function () { 
-  io.set("transports", ["xhr-polling"]); 
-  io.set("polling duration", 10); 
+io.configure(function() {
+    io.set("transports", ["xhr-polling"]);
+    io.set("polling duration", 10);
 });
+
+
+
+
 
 var port = process.env.PORT || 9000;
 app.listen(port);
+
+
+function handler(req, res) {
+    var url_parts = url.parse(req.url, true);
+    var query = url_parts.query;
+    var writerUrl = query.writerURL;
+    if (typeof(writerUrl) != "undefined") {
+        console.log("writerify:" + writerUrl);
+        pipeOtherSite(res, writerUrl);
+    } else {
+        ecstatic(req, res);
+    }
+}
+
+
+
+function pipeOtherSite(res, url) {
+    request.get(url).pipe(res);
+}
+
+
+//##### Type-Writerify Specific Stuff stuff
+
 
 
 var clients = {};
@@ -45,10 +74,6 @@ function parseHtmlToArray(htmlContent) {
 
 var htmlArray = parseHtmlToArray(rawHtml);
 
-
-function handler(req, res) {
-    ecstatic(req, res);
-}
 
 
 // creating a new websocket to keep the content updated without any AJAX request
