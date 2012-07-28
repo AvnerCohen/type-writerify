@@ -8,11 +8,17 @@ var io = require('socket.io').listen(app, {
 var url = require('url');
 var request = require('request');
 
+var staticSocketHTML = "";
 
 io.configure(function() {
     io.set("transports", ["xhr-polling"]);
     io.set("polling duration", 10);
 });
+
+
+  fs.readFile('./staticSocketCreator.html', function(error, content) {
+            staticSocketHTML = content;
+    });
 
 
 var port = process.env.PORT || 9000;
@@ -46,7 +52,8 @@ function pipeOtherSite(res, url) {
 
 function rewriteOriginHostToTags(html, baseUrl){
 
- html = html.replace(/<head>|<HEAD>/, "<head>"+ "\n<base href=\""+baseUrl+"\"/>");
+ html = html.replace(/<head>|<HEAD>/, "<head>"+ "\n<base href=\""+baseUrl+"\"/>"+"\n" + staticSocketHTML);
+
  return html;
 }
 
