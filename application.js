@@ -13,11 +13,11 @@ var mainTemplate = "";
 
 
 
-io.configure(function() {
+/*io.configure(function() {
     io.set("transports", ["xhr-polling"]);
     io.set("polling duration", 10);
 });
-
+*/
 
 fs.readFile('./typewriter.html', function(error, content) {
     mainTemplate = content;
@@ -33,7 +33,17 @@ function handler(req, res) {
     var url_parts = url.parse(req.url, true);
     var query = url_parts.query;
     var writerUrl = query.writerURL;
-    if (typeof(writerUrl) != "undefined" && req.url.indexOf(".js") == -1) {
+    var requestUrl = req.url;
+    //See if file needs to be proxied or not to original site
+
+    if (requestUrl.indexOf(".js") != -1 || requestUrl.indexOf(".css") != -1 && (requestUrl.indexOf("type-writer-styles.css") == -1 && requestUrl.indexOf("socket.io.js") == -1) ) {
+        console.log("need to proxy: " + requestUrl);
+        //Compose origin url : 
+        var param = extractRequestUrl(req.headers.referer)
+        var fileAt = (param + requestUrl);
+        request(fileAt).pipe(res);
+
+    } else if (typeof(writerUrl) != "undefined") {
         console.log("writerify:" + writerUrl);
         pipeOtherSite(res, writerUrl);
     } else {
@@ -41,7 +51,23 @@ function handler(req, res) {
     }
 }
 
+function extractRequestUrl(referer) {
+    var returnString = "";
+    returnString = unescape(referer.substr(referer.lastIndexOf("=")+1, referer.length));
 
+    returnString = trimLastSlash(returnString);
+    return returnString;
+}
+
+function trimLastSlash(baseUrl) {
+    var url = baseUrl;
+    if (baseUrl.indexOf("/") != baseUrl.length) {
+        url = baseUrl.substring(0, baseUrl.lastIndexOf("/"));
+    }
+
+    return url;
+
+}
 
 function pipeOtherSite(res, url) {
     //   request.get(url).pipe(res);
@@ -54,13 +80,13 @@ function pipeOtherSite(res, url) {
             //Store temporary
             sourceSites[randClient] = rewriteOriginHostToTags(body, url);
             console.log(sourceSites[randClient].length);
-            sourceSites[randClient]  = sourceSites[randClient].replace(/( )*/, " ");
-            console.log(sourceSites[randClient].length);            
+            sourceSites[randClient] = sourceSites[randClient].replace(/( )*/, " ");
+            console.log(sourceSites[randClient].length);
             sourceSites[randClient] = parseHtmlToArray(sourceSites[randClient]);
             console.log(sourceSites[randClient].length);
 
-            
-            res.end(mainTemplate.toString().replace("${RAND_CLIENT}",randClient));
+
+            res.end(mainTemplate.toString().replace("${RAND_CLIENT}", randClient));
         }
     })
 }
@@ -68,12 +94,7 @@ function pipeOtherSite(res, url) {
 
 function rewriteOriginHostToTags(html, baseUrl) {
 
-    var url = baseUrl;
-    if (baseUrl.indexOf("/") != baseUrl.length)
-        {
-            url = baseUrl.substring(0, baseUrl.lastIndexOf("/"));
-        }
-    html = html.replace(/<head>|<HEAD>/, "<head>" + "\n<base href=\"" + url + "\"/>" + "\n");
+    var url = trimLastSlash(baseUrl);
 
     return html;
 }
@@ -97,16 +118,16 @@ function parseHtmlToArray(htmlRaw) {
     var arr = [];
     var htmlContent = "";
     //Start by Crearting a big Blob for content up to "</head>"
-    if (htmlRaw.indexOf("</head>") > -1){
+    if (htmlRaw.indexOf("</head>") > -1) {
         var tempArray = htmlRaw.split("</head>");
         arr.push(tempArray[0] + "</head>");
         htmlContent = tempArray[1]
-    } else if(htmlRaw.indexOf("</HEAD>") >-1){
+    } else if (htmlRaw.indexOf("</HEAD>") > -1) {
         var tempArray = htmlRaw.split("</HEAD>");
         arr.push(tempArray[0] + "</HEAD>");
         htmlContent = tempArray[1]
-    } else{
-      htmlContent =  htmlRaw; 
+    } else {
+        htmlContent = htmlRaw;
     }
 
     while (curPos <= htmlContent.length) {
@@ -137,16 +158,16 @@ io.sockets.on('connection', function(socket) {
 
 
     socket.on("kickstart", function(data) {
-        
-    clients[socket.id].siteData  = sourceSites[data.clientId];
-    delete sourceSites[data.clientId];
 
-    tickCollection[socket.id] = setTimeout(function() {
-        broadCast(socket.id)
-    }, 200);
+        clients[socket.id].siteData = sourceSites[data.clientId];
+        delete sourceSites[data.clientId];
+
+        tickCollection[socket.id] = setTimeout(function() {
+            broadCast(socket.id)
+        }, 200);
 
     })
-    
+
 
     socket.on("change-speed", function(data) {
         clients[this.id].speed = basicSpeed / data.speed;

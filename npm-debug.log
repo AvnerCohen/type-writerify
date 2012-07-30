@@ -1,0 +1,190 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'c:\\Program Files (x86)\\nodejs\\node.exe',
+1 verbose cli   'c:\\Program Files (x86)\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'install',
+1 verbose cli   'uuid' ]
+2 info using npm@1.1.45
+3 info using node@v0.8.4
+4 verbose config file C:\Users\User\.npmrc
+5 verbose config file c:\Program Files (x86)\nodejs\etc\npmrc
+6 verbose config file c:\Program Files (x86)\nodejs\node_modules\npm\npmrc
+7 verbose read json c:\NodeDev\typewriterify\package.json
+8 warn package.json Type-writerify@0.0.2 No README.md file found!
+9 verbose read json c:\NodeDev\typewriterify\node_modules\ecstatic\package.json
+10 verbose read json c:\NodeDev\typewriterify\node_modules\request\package.json
+11 verbose read json c:\NodeDev\typewriterify\node_modules\socket.io\package.json
+12 verbose read json c:\NodeDev\typewriterify\node_modules\socket.io-client\package.json
+13 verbose from cache c:\NodeDev\typewriterify\package.json
+14 verbose readDependencies using package.json deps
+15 verbose cache add [ 'uuid', null ]
+16 silly cache add name=undefined spec="uuid" args=["uuid",null]
+17 verbose parsed url { pathname: 'uuid', path: 'uuid', href: 'uuid' }
+18 silly lockFile 48e3462c-uuid uuid
+19 verbose lock uuid C:\Users\User\AppData\Roaming\npm-cache\48e3462c-uuid.lock
+20 silly lockFile 48e3462c-uuid uuid
+21 verbose addNamed [ 'uuid', '' ]
+22 verbose addNamed [ null, '' ]
+23 silly lockFile eae42566-uuid uuid@
+24 verbose lock uuid@ C:\Users\User\AppData\Roaming\npm-cache\eae42566-uuid.lock
+25 silly addNameRange { name: 'uuid', range: '', hasData: false }
+26 verbose url raw uuid
+27 verbose url resolving [ 'https://registry.npmjs.org/', './uuid' ]
+28 verbose url resolved https://registry.npmjs.org/uuid
+29 info retry registry request attempt 1 at 22:01:02
+30 http GET https://registry.npmjs.org/uuid
+31 http 200 https://registry.npmjs.org/uuid
+32 silly registry.get cb [ 200,
+32 silly registry.get   { vary: 'Accept',
+32 silly registry.get     server: 'CouchDB/1.2.0 (Erlang OTP/R15B)',
+32 silly registry.get     etag: '"8BI96LSUFGK9DKB53U1MYJJJN"',
+32 silly registry.get     date: 'Sat, 28 Jul 2012 19:01:08 GMT',
+32 silly registry.get     'content-type': 'application/json',
+32 silly registry.get     'content-length': '1698' } ]
+33 silly addNameRange number 2 { name: 'uuid', range: '', hasData: true }
+34 silly addNameRange versions [ 'uuid', [ '0.0.1', '0.0.2' ] ]
+35 verbose addNamed [ 'uuid', '0.0.2' ]
+36 verbose addNamed [ '0.0.2', '0.0.2' ]
+37 silly lockFile 18d223ba-uuid-0-0-2 uuid@0.0.2
+38 verbose lock uuid@0.0.2 C:\Users\User\AppData\Roaming\npm-cache\18d223ba-uuid-0-0-2.lock
+39 silly lockFile 65c2f996-ry-npmjs-org-uuid-uuid-0-0-2-tgz https://registry.npmjs.org/uuid/-/uuid-0.0.2.tgz
+40 verbose lock https://registry.npmjs.org/uuid/-/uuid-0.0.2.tgz C:\Users\User\AppData\Roaming\npm-cache\65c2f996-ry-npmjs-org-uuid-uuid-0-0-2-tgz.lock
+41 verbose addRemoteTarball [ 'https://registry.npmjs.org/uuid/-/uuid-0.0.2.tgz',
+41 verbose addRemoteTarball   undefined ]
+42 info retry fetch attempt 1 at 22:01:04
+43 verbose fetch to= C:\Users\User\AppData\Local\Temp\npm-13776\1343502064378-0.8060240680351853\tmp.tgz
+44 http GET https://registry.npmjs.org/uuid/-/uuid-0.0.2.tgz
+45 http 200 https://registry.npmjs.org/uuid/-/uuid-0.0.2.tgz
+46 verbose tar unpack C:\Users\User\AppData\Local\Temp\npm-13776\1343502064378-0.8060240680351853\tmp.tgz
+47 silly lockFile 03272239-64378-0-8060240680351853-package C:\Users\User\AppData\Local\Temp\npm-13776\1343502064378-0.8060240680351853\package
+48 verbose lock C:\Users\User\AppData\Local\Temp\npm-13776\1343502064378-0.8060240680351853\package C:\Users\User\AppData\Roaming\npm-cache\03272239-64378-0-8060240680351853-package.lock
+49 silly gunzTarPerm modes [ '755', '644' ]
+50 silly gunzTarPerm extractEntry
+51 silly gunzTarPerm extractEntry .hg_archival.txt
+52 silly gunzTarPerm modified mode [ '.hg_archival.txt', 511, 493 ]
+53 silly gunzTarPerm extractEntry .hgignore
+54 silly gunzTarPerm modified mode [ '.hgignore', 511, 493 ]
+55 silly gunzTarPerm extractEntry LICENSE
+56 silly gunzTarPerm modified mode [ 'LICENSE', 511, 493 ]
+57 silly gunzTarPerm extractEntry package.json
+58 silly gunzTarPerm modified mode [ 'package.json', 511, 493 ]
+59 silly gunzTarPerm extractEntry src/
+60 silly gunzTarPerm modified mode [ 'src/', 511, 493 ]
+61 silly gunzTarPerm extractEntry test.js
+62 silly gunzTarPerm modified mode [ 'test.js', 511, 493 ]
+63 silly gunzTarPerm extractEntry wscript
+64 silly gunzTarPerm modified mode [ 'wscript', 511, 493 ]
+65 silly gunzTarPerm extractEntry src/uuid.cc
+66 silly gunzTarPerm modified mode [ 'src/uuid.cc', 511, 493 ]
+67 silly gunzTarPerm extractEntry src/uuid.h
+68 silly gunzTarPerm modified mode [ 'src/uuid.h', 511, 493 ]
+69 verbose read json C:\Users\User\AppData\Local\Temp\npm-13776\1343502064378-0.8060240680351853\package\package.json
+70 warn package.json uuid@0.0.2 No README.md file found!
+71 silly lockFile 03272239-64378-0-8060240680351853-package C:\Users\User\AppData\Local\Temp\npm-13776\1343502064378-0.8060240680351853\package
+72 verbose from cache C:\Users\User\AppData\Local\Temp\npm-13776\1343502064378-0.8060240680351853\package\package.json
+73 verbose tar pack [ 'C:\\Users\\User\\AppData\\Roaming\\npm-cache\\uuid\\0.0.2\\package.tgz',
+73 verbose tar pack   'C:\\Users\\User\\AppData\\Local\\Temp\\npm-13776\\1343502064378-0.8060240680351853\\package' ]
+74 verbose tarball C:\Users\User\AppData\Roaming\npm-cache\uuid\0.0.2\package.tgz
+75 verbose folder C:\Users\User\AppData\Local\Temp\npm-13776\1343502064378-0.8060240680351853\package
+76 silly lockFile 810d0335-npm-cache-uuid-0-0-2-package-tgz C:\Users\User\AppData\Roaming\npm-cache\uuid\0.0.2\package.tgz
+77 verbose lock C:\Users\User\AppData\Roaming\npm-cache\uuid\0.0.2\package.tgz C:\Users\User\AppData\Roaming\npm-cache\810d0335-npm-cache-uuid-0-0-2-package-tgz.lock
+78 silly lockFile 810d0335-npm-cache-uuid-0-0-2-package-tgz C:\Users\User\AppData\Roaming\npm-cache\uuid\0.0.2\package.tgz
+79 silly lockFile d383748d-ing-npm-cache-uuid-0-0-2-package C:\Users\User\AppData\Roaming\npm-cache\uuid\0.0.2\package
+80 verbose lock C:\Users\User\AppData\Roaming\npm-cache\uuid\0.0.2\package C:\Users\User\AppData\Roaming\npm-cache\d383748d-ing-npm-cache-uuid-0-0-2-package.lock
+81 silly lockFile d383748d-ing-npm-cache-uuid-0-0-2-package C:\Users\User\AppData\Roaming\npm-cache\uuid\0.0.2\package
+82 verbose tar unpack C:\Users\User\AppData\Roaming\npm-cache\uuid\0.0.2\package.tgz
+83 silly lockFile d383748d-ing-npm-cache-uuid-0-0-2-package C:\Users\User\AppData\Roaming\npm-cache\uuid\0.0.2\package
+84 verbose lock C:\Users\User\AppData\Roaming\npm-cache\uuid\0.0.2\package C:\Users\User\AppData\Roaming\npm-cache\d383748d-ing-npm-cache-uuid-0-0-2-package.lock
+85 silly gunzTarPerm modes [ '755', '644' ]
+86 silly gunzTarPerm extractEntry package.json
+87 silly gunzTarPerm modified mode [ 'package.json', 438, 420 ]
+88 silly gunzTarPerm extractEntry LICENSE
+89 silly gunzTarPerm modified mode [ 'LICENSE', 438, 420 ]
+90 silly gunzTarPerm extractEntry test.js
+91 silly gunzTarPerm modified mode [ 'test.js', 438, 420 ]
+92 silly gunzTarPerm extractEntry .hgignore
+93 silly gunzTarPerm modified mode [ '.hgignore', 438, 420 ]
+94 silly gunzTarPerm extractEntry .hg_archival.txt
+95 silly gunzTarPerm modified mode [ '.hg_archival.txt', 438, 420 ]
+96 silly gunzTarPerm extractEntry src/uuid.cc
+97 silly gunzTarPerm modified mode [ 'src/uuid.cc', 438, 420 ]
+98 silly gunzTarPerm extractEntry src/uuid.h
+99 silly gunzTarPerm modified mode [ 'src/uuid.h', 438, 420 ]
+100 silly gunzTarPerm extractEntry wscript
+101 silly gunzTarPerm modified mode [ 'wscript', 438, 420 ]
+102 verbose read json C:\Users\User\AppData\Roaming\npm-cache\uuid\0.0.2\package\package.json
+103 silly lockFile d383748d-ing-npm-cache-uuid-0-0-2-package C:\Users\User\AppData\Roaming\npm-cache\uuid\0.0.2\package
+104 silly shasum updated bytes 2396
+105 info shasum 8f42352262d9e636eafa24659c693d37faa502a6
+105 info shasum C:\Users\User\AppData\Roaming\npm-cache\uuid\0.0.2\package.tgz
+106 verbose from cache C:\Users\User\AppData\Roaming\npm-cache\uuid\0.0.2\package\package.json
+107 verbose chmod C:\Users\User\AppData\Roaming\npm-cache\uuid\0.0.2\package.tgz 644
+108 silly chown skipping for windows C:\Users\User\AppData\Roaming\npm-cache\uuid\0.0.2\package.tgz
+109 silly lockFile 65c2f996-ry-npmjs-org-uuid-uuid-0-0-2-tgz https://registry.npmjs.org/uuid/-/uuid-0.0.2.tgz
+110 silly lockFile 18d223ba-uuid-0-0-2 uuid@0.0.2
+111 silly lockFile eae42566-uuid uuid@
+112 silly resolved [ { name: 'uuid',
+112 silly resolved     description: 'Simple libuuid bindings to allow UUIDs to be generated from JS.',
+112 silly resolved     version: '0.0.2',
+112 silly resolved     author: { name: 'Nikhil Marathe' },
+112 silly resolved     repository: { type: 'hg', url: 'http://bitbucket.org/nikhilm/uuidjs' },
+112 silly resolved     engine: [ 'node >=0.1.103' ],
+112 silly resolved     scripts: { preinstall: 'node-waf configure && node-waf build' },
+112 silly resolved     main: 'build/default/uuid.node',
+112 silly resolved     _id: 'uuid@0.0.2',
+112 silly resolved     dist: { shasum: '8f42352262d9e636eafa24659c693d37faa502a6' },
+112 silly resolved     _from: 'uuid' } ]
+113 info install uuid@0.0.2 into c:\NodeDev\typewriterify
+114 info installOne uuid@0.0.2
+115 verbose from cache C:\Users\User\AppData\Roaming\npm-cache\uuid\0.0.2\package\package.json
+116 info c:\NodeDev\typewriterify\node_modules\uuid unbuild
+117 verbose read json c:\NodeDev\typewriterify\node_modules\uuid\package.json
+118 verbose tar unpack C:\Users\User\AppData\Roaming\npm-cache\uuid\0.0.2\package.tgz
+119 silly lockFile 0812681d--typewriterify-node-modules-uuid c:\NodeDev\typewriterify\node_modules\uuid
+120 verbose lock c:\NodeDev\typewriterify\node_modules\uuid C:\Users\User\AppData\Roaming\npm-cache\0812681d--typewriterify-node-modules-uuid.lock
+121 silly gunzTarPerm modes [ '755', '644' ]
+122 silly gunzTarPerm extractEntry package.json
+123 silly gunzTarPerm modified mode [ 'package.json', 438, 420 ]
+124 silly gunzTarPerm extractEntry LICENSE
+125 silly gunzTarPerm modified mode [ 'LICENSE', 438, 420 ]
+126 silly gunzTarPerm extractEntry test.js
+127 silly gunzTarPerm modified mode [ 'test.js', 438, 420 ]
+128 silly gunzTarPerm extractEntry .hgignore
+129 silly gunzTarPerm modified mode [ '.hgignore', 438, 420 ]
+130 silly gunzTarPerm extractEntry .hg_archival.txt
+131 silly gunzTarPerm modified mode [ '.hg_archival.txt', 438, 420 ]
+132 silly gunzTarPerm extractEntry src/uuid.cc
+133 silly gunzTarPerm modified mode [ 'src/uuid.cc', 438, 420 ]
+134 silly gunzTarPerm extractEntry src/uuid.h
+135 silly gunzTarPerm modified mode [ 'src/uuid.h', 438, 420 ]
+136 silly gunzTarPerm extractEntry wscript
+137 silly gunzTarPerm modified mode [ 'wscript', 438, 420 ]
+138 verbose read json c:\NodeDev\typewriterify\node_modules\uuid\package.json
+139 silly lockFile 0812681d--typewriterify-node-modules-uuid c:\NodeDev\typewriterify\node_modules\uuid
+140 info preinstall uuid@0.0.2
+141 verbose unsafe-perm in lifecycle true
+142 silly exec cmd "/c" "node-waf configure && node-waf build"
+143 silly cmd,/c,node-waf configure && node-waf build,c:\NodeDev\typewriterify\node_modules\uuid spawning
+144 info uuid@0.0.2 Failed to exec preinstall script
+145 info c:\NodeDev\typewriterify\node_modules\uuid unbuild
+146 verbose from cache c:\NodeDev\typewriterify\node_modules\uuid\package.json
+147 info preuninstall uuid@0.0.2
+148 info uninstall uuid@0.0.2
+149 verbose true,c:\NodeDev\typewriterify\node_modules,c:\NodeDev\typewriterify\node_modules unbuild uuid@0.0.2
+150 info postuninstall uuid@0.0.2
+151 error uuid@0.0.2 preinstall: `node-waf configure && node-waf build`
+151 error `cmd "/c" "node-waf configure && node-waf build"` failed with 1
+152 error Failed at the uuid@0.0.2 preinstall script.
+152 error This is most likely a problem with the uuid package,
+152 error not with npm itself.
+152 error Tell the author that this fails on your system:
+152 error     node-waf configure && node-waf build
+152 error You can get their info via:
+152 error     npm owner ls uuid
+152 error There is likely additional logging output above.
+153 error System Windows_NT 6.1.7601
+154 error command "c:\\Program Files (x86)\\nodejs\\node.exe" "c:\\Program Files (x86)\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install" "uuid"
+155 error cwd c:\NodeDev\typewriterify
+156 error node -v v0.8.4
+157 error npm -v 1.1.45
+158 error code ELIFECYCLE
+159 verbose exit [ 1, true ]

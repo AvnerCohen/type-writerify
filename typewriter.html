@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" media="screen" href="./styles.css">
+    <link rel="stylesheet" media="screen" href="./type-writer-styles.css">
     <link href='http://fonts.googleapis.com/css?family=Aldrich' rel='stylesheet'
     type='text/css' />
     <script type="text/javascript" src="http://www.google.com/jsapi">
@@ -27,20 +27,29 @@
                   
                   var totalString = "";
                   var direction = "F";
+                  var $targetDoc = null;
                   // on every message recived we print the new datas inside the #broadcast-msg div
                   socket.on('broadcast_msg', function(data) {
                       if (direction === "F") {
-                          totalString += data;
+                          $targetDoc.append(data);
+                          totalString+=data;
                       } else { //Rewind case.
                           //In rewind simply remove text based on sent length, otherwise Asynch nature of this makes it impossible to predict;
                           totalString = totalString.substr(0, totalString.length - data.length);
+                          $targetDoc.html(totalString);
                       }
-                      $('#broadcast-msg').html(totalString);
+
 
                   });
                   $(document).ready(function() {
                    //   document.getElementById('soundEffect').play();
                       document.getElementById('soundEffect').loop=true;
+                      //Start by Creating a target div in the iframe context:
+                      //var target = window.frames["testIframe"].document.body;
+                      var target =$(".targetDiv");
+                      $targetDoc = $(target);
+                    
+
                       $('#soundEffect').bind('timeupdate', function() {
                           if (this.currentTime > 1.5) {
                             this.currentTime = 0;
@@ -67,7 +76,7 @@
 <body>
     <div id="container" dir="ltr">
         <header id="header">
-            <div style="width:100%;height:60px;text-align:center;background-color:white;color:black;">
+            <div style="width:100%;height:10%;text-align:center;background-color:white;color:black;">
                 <button class="change-direction" data-direction="R">
                     REWIND
                 </button>
@@ -94,8 +103,11 @@
                 </button>
             </div>
         </header>
-        <div id="broadcast-msg" style="border:1px solid black">
+        <!-- <iframe name="testIframe" id="testIframe" style="width:100%;height:100%;border:0px;" src="about:blank"></iframe> -->
+        <div style="width:100%;height:95%" class="targetDiv">
+                
         </div>
+
         <audio id="soundEffect" controls="controls" style="display:none">
             <source src="typewriter.mp3" type="audio/mp3" />
             Your browser does not support the audio tag.
