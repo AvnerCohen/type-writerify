@@ -7,6 +7,10 @@ var io = require('socket.io').listen(app, {
 });
 var url = require('url');
 var request = require('request');
+var cheerio = require('cheerio');
+
+
+
 
 var staticSocketHTML = "";
 var mainTemplate = "";
@@ -78,12 +82,15 @@ function pipeOtherSite(res, url) {
             });
             var randClient = randomString(64);
             //Store temporary
-            sourceSites[randClient] = rewriteOriginHostToTags(body, url);
-            console.log(sourceSites[randClient].length);
-            sourceSites[randClient] = sourceSites[randClient].replace(/( )*/, " ");
-            console.log(sourceSites[randClient].length);
-            sourceSites[randClient] = parseHtmlToArray(sourceSites[randClient]);
-            console.log(sourceSites[randClient].length);
+            var alteredBody = rewriteOriginHostToTags(body, url);
+            alteredBody = alteredBody.replace(/(  )*/, " ");
+
+            var $ = cheerio.load(alteredBody);
+            var arr = [];            
+            $("*").each(function(){
+                arr.push($('<div>').append($(this).clone()).html());
+            })
+            sourceSites[randClient] = arr;
 
 
             res.end(mainTemplate.toString().replace("${RAND_CLIENT}", randClient));
