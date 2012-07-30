@@ -85,18 +85,38 @@ function pipeOtherSite(res, url) {
             var alteredBody = rewriteOriginHostToTags(body, url);
             alteredBody = alteredBody.replace(/(  )*/, " ");
 
-            var $ = cheerio.load(alteredBody);
-            var arr = [];            
-            $("*").each(function(){
-                arr.push($('<div>').append($(this).clone()).html());
-            })
-            sourceSites[randClient] = arr;
+            sourceSites[randClient] = parseHtmlToArray(alteredBody);
+            
+            //var $ = cheerio.load(alteredBody);
+            //sourceSites[randClient] = htmlToObjectGraph($);
+
+            // The old WAY
+            //console.log(sourceSites[randClient].length);
+            //sourceSites[randClient] = sourceSites[randClient].replace(/( )*/, " ");
+            //console.log(sourceSites[randClient].length);
+            //sourceSites[randClient] = parseHtmlToArray(sourceSites[randClient]);
+            //console.log(sourceSites[randClient].length);
+            
 
 
             res.end(mainTemplate.toString().replace("${RAND_CLIENT}", randClient));
         }
     })
 }
+
+function htmlToObjectGraph($){
+var arr = [];
+$("head").each(function(){
+    arr.push(getOuter($, this));
+});
+
+}
+
+function getOuter($, $el){
+       
+       return $('<div>').append($el.clone()).html();
+}
+
 
 
 function rewriteOriginHostToTags(html, baseUrl) {
