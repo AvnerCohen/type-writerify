@@ -22,24 +22,42 @@
  		items : [],
  		currentWithinItem :0,
  		currentItem : 0,
- 		speed : 1
+ 		currentText : "",
+ 		speed : 15,
+ 		baseSpeed : 15
 
  	};
+ 	typewriter.timeout = null;
+
  	typewriter.typeNext = function(){
 	var target = $(".content");
-	var nextElement = typewriter.getNextElement(typewriter.context.items[typewriter.context.currentItem]);
-	target.append(nextElement);
-	if (typewriter.context.currentItem < typewriter.context.items.length){
- 			setTimeout(typewriter.typeNext, 700);
+	var nextElement = null;
+	if(typewriter.context.currentText === ""){
+		nextElement = typewriter.getNextElement(typewriter.context.items[typewriter.context.currentItem++]);
+		typewriter.context.currentText = nextElement.text();
+		nextElement.text("");
+		typewriter.context.currentWithinItem = 0;
+
+	} else {
+		nextElement = typewriter.context.currentText.substr(typewriter.context.currentWithinItem++, 1);
+		if (typewriter.context.currentText.length === typewriter.context.currentWithinItem){
+			typewriter.context.currentText = ""; //Reset content
+		}
+	}
+
+	target.last().append(nextElement);
+
+	if (typewriter.context.currentItem <= typewriter.context.items.length){
+ 			typewriter.timeout = setTimeout(typewriter.typeNext, typewriter.getRandomWait());
 		};
 
  	};
 
  	typewriter.kickShow = function(){
  		//Start by creating the array of all items to walk through;
- 		typewriter.context.items = $(".hiddenElement").children();
+ 		typewriter.context.items = $(".hiddenElement").find("*")
 
- 		setTimeout(typewriter.typeNext, 100);
+ 		typewriter.timeout = setTimeout(typewriter.typeNext, 100);
 
  	}
 
@@ -51,6 +69,11 @@
  		}
  		return returnEle;
  	}
+
+ 	typewriter.getRandomWait = function(){
+ 	    var wait = Math.abs(Math.random() * (typewriter.context.speed * 10))
+   		 return wait;
+   	}
 
 
                   $(document).ready(function() {
@@ -66,9 +89,7 @@
 
                       $(document.body).on("click", "button.change-speed", function() {
                           var speed = $(this).attr("data-speed")
-                          socket.emit("change-speed", {
-                              speed: speed
-                          });
+ 							typewriter.context.speed = typewriter.context.baseSpeed / speed;
                           console.log("New speed:" + speed);
                       });
                       $(document.body).on("click", "button.change-direction", function() {
