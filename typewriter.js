@@ -1,4 +1,9 @@
  	typewriter = {};
+ 	typewriter.selector = {
+ 		name: ".content",
+ 		changed : false,
+ 		maxHeight : 490
+ 	}
  	typewriter.context = {
  		items : [],
  		currentItem : 0,
@@ -12,23 +17,26 @@
  	typewriter.timeout = null;
  	
  	typewriter.typeNext = function(){
-	var target = $(".content");
-	var nextElement = null;
-
-	if(typewriter.context.currentText === ""){
-		nextElement = typewriter.getNextElement();
-		typewriter.context.currentText = nextElement.text();
-		nextElement.text("");
-		typewriter.context.currentWithinItem = 0;
-		target.append(nextElement);
-	} else {
-		nextElement = typewriter.context.currentText.substr(typewriter.context.currentWithinItem++, 1);
-		if (typewriter.context.currentText.length === typewriter.context.currentWithinItem){
-			typewriter.context.currentText = ""; //Reset content
-		}
-		target.children().last().append(nextElement);
+	var target = $(typewriter.selector.name);
+	if (!typewriter.selector.changed && target.height() > typewriter.selector.maxHeight){
+		typewriter.selector.name = ".content1";
 	}
-
+	var nextElement = null;
+	if (typewriter.context.speed > 0){
+		if(typewriter.context.currentText === ""){
+			nextElement = typewriter.getNextElement();
+			typewriter.context.currentText = nextElement.text();
+			nextElement.text("");
+			typewriter.context.currentWithinItem = 0;
+			target.append(nextElement);
+		} else {
+			nextElement = typewriter.context.currentText.substr(typewriter.context.currentWithinItem++, 1);
+			if (typewriter.context.currentText.length === typewriter.context.currentWithinItem){
+				typewriter.context.currentText = ""; //Reset content
+			}
+			target.children().last().append(nextElement);
+		}
+	}
 	if (typewriter.context.currentItem <= typewriter.context.items.length){
  			typewriter.timeout = setTimeout(typewriter.typeNext, typewriter.getRandomWait());
 		};
