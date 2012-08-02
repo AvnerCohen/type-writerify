@@ -7,26 +7,27 @@ var io = require('socket.io').listen(app, {
 });
 var url = require('url');
 var request = require('request');
-var cheerio = require('cheerio');
-
-
-
-
-var staticSocketHTML = "";
+//var cheerio = require('cheerio');
 var mainTemplate = "";
 
+var staticLetter = "";
 
 
-/*io.configure(function() {
+io.configure(function() {
     io.set("transports", ["xhr-polling"]);
     io.set("polling duration", 10);
 });
-*/
+
+
+fs.readFile('./i-wrote-it.html', function(error, content) {
+    staticLetter = content;
+
+});
+
 
 fs.readFile('./typewriter.html', function(error, content) {
     mainTemplate = content;
 });
-
 
 
 var port = process.env.PORT || 9000;
@@ -47,12 +48,20 @@ function handler(req, res) {
         var fileAt = (param + requestUrl);
         request(fileAt).pipe(res);
 
-    } else if (typeof(writerUrl) != "undefined") {
+    } else if (req.url.indexOf("singit")!= -1){
+        pipeArrayFromStaticLetter(req, res);
+    }
+
+    else if (typeof(writerUrl) != "undefined") {
         console.log("writerify:" + writerUrl);
         pipeOtherSite(res, writerUrl);
     } else {
         ecstatic(req, res);
     }
+}
+
+function pipeArrayFromStaticLetter(req, res){
+    res.end(staticLetter.toString());
 }
 
 function extractRequestUrl(referer) {
@@ -86,7 +95,7 @@ function pipeOtherSite(res, url) {
             alteredBody = alteredBody.replace(/(  )*/, " ");
 
             sourceSites[randClient] = parseHtmlToArray(alteredBody);
-            
+
             //var $ = cheerio.load(alteredBody);
             //sourceSites[randClient] = htmlToObjectGraph($);
 

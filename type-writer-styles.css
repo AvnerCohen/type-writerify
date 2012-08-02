@@ -1,6 +1,8 @@
-html { font-size: 100%; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%;     font-family: 'Aldrich';}
+html { font-size: 100%; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%;     font-family: 'Courgette', cursive;}
 
-body { margin: 0; font-size: 1em; line-height: 1.4;     font-family: 'Aldrich';}
+
+
+body { margin: 0; font-size: 1em; line-height: 1.4;   font-family: 'Courgette', cursive;background-image:url("mainbg.png");}
 
 ::-moz-selection { background: #fe57a1; color: #fff; text-shadow: none; }
 ::selection { background: #fe57a1; color: #fff; text-shadow: none; }
