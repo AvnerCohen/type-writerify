@@ -12,7 +12,7 @@
                 
     </script>
     <script type="text/javascript">
-                                google.load("jquery", "1");
+        google.load("jquery", "1");
     </script>
                 
     </script>
@@ -20,8 +20,8 @@
  	typewriter = {};
  	typewriter.context = {
  		items : [],
- 		currentWithinItem :0,
  		currentItem : 0,
+ 	 	currentWithinItem :0,
  		currentText : "",
  		speed : 15,
  		baseSpeed : 15
@@ -32,20 +32,20 @@
  	typewriter.typeNext = function(){
 	var target = $(".content");
 	var nextElement = null;
+
 	if(typewriter.context.currentText === ""){
-		nextElement = typewriter.getNextElement(typewriter.context.items[typewriter.context.currentItem++]);
+		nextElement = typewriter.getNextElement();
 		typewriter.context.currentText = nextElement.text();
 		nextElement.text("");
 		typewriter.context.currentWithinItem = 0;
-
+		target.append(nextElement);
 	} else {
 		nextElement = typewriter.context.currentText.substr(typewriter.context.currentWithinItem++, 1);
 		if (typewriter.context.currentText.length === typewriter.context.currentWithinItem){
 			typewriter.context.currentText = ""; //Reset content
 		}
+		target.children().last().append(nextElement);
 	}
-
-	target.last().append(nextElement);
 
 	if (typewriter.context.currentItem <= typewriter.context.items.length){
  			typewriter.timeout = setTimeout(typewriter.typeNext, typewriter.getRandomWait());
@@ -55,19 +55,14 @@
 
  	typewriter.kickShow = function(){
  		//Start by creating the array of all items to walk through;
- 		typewriter.context.items = $(".hiddenElement").find("*")
+ 		typewriter.context.items = $(".hidden-element").children().first().children();
 
  		typewriter.timeout = setTimeout(typewriter.typeNext, 100);
 
  	}
 
- 	typewriter.getNextElement = function(parent){
- 		var ele = $(parent);
- 		var returnEle = null;
- 		while(ele.children().length){
-				returnEle = ele = ele.children().first();
- 		}
- 		return $(returnEle);
+ 	typewriter.getNextElement = function(){
+ 		return $(typewriter.context.items[typewriter.context.currentItem++]);
  	}
 
  	typewriter.getRandomWait = function(){
@@ -79,7 +74,7 @@
                   $(document).ready(function() {
 
                      var target = $(".content");
-                    $(".hiddenElement").load("singit", typewriter.kickShow);
+                    $(".hidden-element").load("singit", typewriter.kickShow);
 
                       $('#soundEffect').bind('timeupdate', function() {
                           if (this.currentTime > 1.5) {
@@ -132,7 +127,7 @@
 		text-align:center;
 		color:black;
 	}
-	div.hiddenElement{
+	div.hidden-element{
 		visibility:hidden;
 	}
 	</style>
@@ -179,7 +174,7 @@
             <source src="typewriter.mp3" type="audio/mp3" />
             Your browser does not support the audio tag.
         </audio>
-<div class="hiddenElement"></div>
+<div class="hidden-element"></div>
 </body>
 
 </html>
