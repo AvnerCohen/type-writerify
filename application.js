@@ -40,15 +40,16 @@ function handler(req, res) {
     var writerUrl = query.writerURL;
     var requestUrl = req.url;
     //See if file needs to be proxied or not to original site
-
-    if (requestUrl.indexOf(".js") != -1 || requestUrl.indexOf(".css") != -1 && (requestUrl.indexOf("type-writer-styles.css") == -1 && requestUrl.indexOf("socket.io.js") == -1) ) {
+ /*
+    if (requestUrl.indexOf(".js") != -1 || requestUrl.indexOf(".css") != -1 && (
+        requestUrl.indexOf("typewriter") == -1 && requestUrl.indexOf("type-writer-styles.css") == -1 && requestUrl.indexOf("socket.io.js") == -1) ) {
         console.log("need to proxy: " + requestUrl);
         //Compose origin url : 
         var param = extractRequestUrl(req.headers.referer)
         var fileAt = (param + requestUrl);
         request(fileAt).pipe(res);
 
-    } else if (req.url.indexOf("singit")!= -1){
+    } else */if (req.url.indexOf("singit")!= -1){
         pipeArrayFromStaticLetter(req, res);
     }
 
