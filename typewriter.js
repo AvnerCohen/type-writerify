@@ -10,7 +10,8 @@
  	 	currentWithinItem :0,
  		currentText : "",
  		speed : 15,
- 		baseSpeed : 15
+ 		baseSpeed : 15,
+ 		direction : "F"
 
  	};
 
@@ -23,6 +24,25 @@
 	}
 	var nextElement = null;
 	if (typewriter.context.speed > 0){
+		if (typewriter.context.direction == "F"){
+			typewriter.forward(target);
+		} else{
+			typewriter.rewind(target);		
+		}
+	}
+	if (typewriter.context.currentItem <= typewriter.context.items.length){
+ 			typewriter.timeout = setTimeout(typewriter.typeNext, typewriter.getRandomWait());
+		};
+
+ 	};
+
+ 	typewriter.rewind = function(target){
+ 		var origText = target.find("*").last().html()
+		target.find("*").last().html(origText.substring(0,origText.length-2));
+
+ 	};
+
+ 	typewriter.forward = function(target){
 		if(typewriter.context.currentText === ""){
 			nextElement = typewriter.getNextElement();
 			typewriter.context.currentText = nextElement.text();
@@ -36,10 +56,6 @@
 			}
 			target.children().last().append(nextElement);
 		}
-	}
-	if (typewriter.context.currentItem <= typewriter.context.items.length){
- 			typewriter.timeout = setTimeout(typewriter.typeNext, typewriter.getRandomWait());
-		};
 
  	};
 

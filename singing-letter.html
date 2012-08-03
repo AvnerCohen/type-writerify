@@ -29,16 +29,13 @@
 
                       $(document.body).on("click", "button.change-speed", function() {
                           var speed = $(this).attr("data-speed");
- 							typewriter.context.speed = typewriter.context.baseSpeed / speed;
+ 							              typewriter.context.speed = typewriter.context.baseSpeed / speed;
                           console.log("New speed:" + speed);
                       });
                       $(document.body).on("click", "button.change-direction", function() {
                           var new_direction = $(this).attr("data-direction")
-                          socket.emit("change-direction", {
-                              direction: new_direction
-                          });
+                              typewriter.context.direction -= new_direction;
                           console.log("New direction:" + new_direction);
-                          direction = new_direction;
                       });
                   });
     </script>
