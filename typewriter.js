@@ -39,16 +39,18 @@
  	typewriter.rewind = function(target){
 
  		var lastEle = target.find("*").last();
- 		if (lastEle.length == 0){
+  		if (lastEle.length == 0){
  			return false;
  		}
+
  		var origText = lastEle.html();
  		if (origText === ""){
  			lastEle.remove();
  			typewriter.context.currentItem--;
- 			typewriter.context.currentWithinItem = 0;
+			typewriter.context.currentText  = $(typewriter.context.items[typewriter.context.currentItem-1]).text();
+			typewriter.context.currentWithinItem = typewriter.context.currentText.length;
  		} else{
-			lastEle.html(origText.substring(0,origText.length-2));
+			lastEle.html(origText.substring(0,origText.length-1));
 			typewriter.context.currentWithinItem--;
 		}
 
@@ -62,30 +64,33 @@
 			typewriter.context.currentText = nextElement.text();
 			nextElement.text("");
 			typewriter.context.currentWithinItem = 0;
-			target.append(nextElement);
 		} else {
 			nextElement = typewriter.context.currentText.substr(typewriter.context.currentWithinItem++, 1);
 			if (typewriter.context.currentText.length === typewriter.context.currentWithinItem){
 				typewriter.context.currentText = ""; //Reset content
 			}
-			target.children().last().append(nextElement);
+			target = target.children().last();
 		}
 
+		target.append(nextElement);
  	};
 
  	typewriter.kickShow = function(){
  		//Start by creating the array of all items to walk through;
  		typewriter.context.items = $(".hidden-element").children().first().children();
-
  		typewriter.timeout = setTimeout(typewriter.typeNext, 100);
 
  	}
 
  	typewriter.getNextElement = function(){
- 		return $(typewriter.context.items[typewriter.context.currentItem++]);
+ 		return $(typewriter.context.items[typewriter.context.currentItem++]).clone();
  	}
 
  	typewriter.getRandomWait = function(){
  	    var wait = Math.abs(Math.random() * (typewriter.context.speed * 10))
    		 return wait;
+   	}
+
+   	typewriter.setDirection = function(direction){
+     		typewriter.context.direction = direction;
    	}

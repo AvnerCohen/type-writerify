@@ -33,10 +33,16 @@
                           console.log("New speed:" + speed);
                       });
                       $(document.body).on("click", "button.change-direction", function() {
-                          var new_direction = $(this).attr("data-direction")
-                              typewriter.context.direction = new_direction;
+                          var new_direction = $(this).attr("data-direction");
+                              typewriter.setDirection(new_direction);
                           console.log("New direction:" + new_direction);
                       });
+
+                      window.setInterval(function(){
+                        $("#data-1").text(typewriter.context.currentItem);
+                        $("#data-2").text(typewriter.context.currentWithinItem);
+                        $("#data-3").text(typewriter.context.direction);
+                      }, 20);
                   });
     </script>
 </head>
@@ -77,6 +83,18 @@
 				<div class="content1"></div>
 			</div>
 	</div>
+<!--   <table border="1">
+    <tr>
+      <th>current item</th>
+      <th>within item</th>
+      <th>direction</th>
+     </tr>
+     <tr>
+      <td id="data-1"></td>
+      <td id="data-2"></td>
+      <td id="data-3"></td>
+      </tr>
+  </table> -->
 
         <audio id="soundEffect" controls="controls" style="display:none">
             <source src="typewriter.mp3" type="audio/mp3" />
