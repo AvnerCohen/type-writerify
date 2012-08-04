@@ -34,7 +34,7 @@
                       });
                       $(document.body).on("click", "button.change-direction", function() {
                           var new_direction = $(this).attr("data-direction")
-                              typewriter.context.direction -= new_direction;
+                              typewriter.context.direction = new_direction;
                           console.log("New direction:" + new_direction);
                       });
                   });

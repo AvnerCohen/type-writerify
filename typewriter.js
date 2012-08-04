@@ -37,8 +37,22 @@
  	};
 
  	typewriter.rewind = function(target){
- 		var origText = target.find("*").last().html()
-		target.find("*").last().html(origText.substring(0,origText.length-2));
+
+ 		var lastEle = target.find("*").last();
+ 		if (lastEle.length == 0){
+ 			return false;
+ 		}
+ 		var origText = lastEle.html();
+ 		if (origText === ""){
+ 			lastEle.remove();
+ 			typewriter.context.currentItem--;
+ 			typewriter.context.currentWithinItem = 0;
+ 		} else{
+			lastEle.html(origText.substring(0,origText.length-2));
+			typewriter.context.currentWithinItem--;
+		}
+
+
 
  	};
 
