@@ -65,6 +65,12 @@
 			nextElement.text("");
 			typewriter.context.currentWithinItem = 0;
 		} else {
+			if(wrongSpell.isHit()){
+				var charCode = (typewriter.context.currentText.substr(typewriter.context.currentWithinItem,1)).charCodeAt(0) + 1;
+				var badChar = String.fromCharCode(charCode);
+				typewriter.context.currentText = $().append_in_str(typewriter.context.currentText, badChar, typewriter.context.currentWithinItem); //use jquery append plugin
+			}//End error simulation
+
 			nextElement = typewriter.context.currentText.substr(typewriter.context.currentWithinItem++, 1);
 			if (typewriter.context.currentText.length === typewriter.context.currentWithinItem){
 				typewriter.context.currentText = ""; //Reset content
@@ -94,3 +100,13 @@
    	typewriter.setDirection = function(direction){
      		typewriter.context.direction = direction;
    	}
+
+
+
+wrongSpell = {};
+wrongSpell.errorFactor = 10;
+wrongSpell.isHit = function(){
+	var isHit = (Math.random()*100 < wrongSpell.errorFactor) ? true : false;
+	console.log("is going to error:" + isHit)
+	return isHit;
+}
