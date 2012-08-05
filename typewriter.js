@@ -4,6 +4,7 @@
  		changed : false,
  		maxHeight : 490
  	}
+ 	typewriter.errorStack = [];
  	typewriter.context = {
  		items : [],
  		currentItem : 0,
@@ -59,6 +60,7 @@
  	};
 
  	typewriter.forward = function(target){
+
 		if(typewriter.context.currentText === ""){
 			nextElement = typewriter.getNextElement();
 			typewriter.context.currentText = nextElement.text();
@@ -66,11 +68,14 @@
 			typewriter.context.currentWithinItem = 0;
 		} else {
 			if(wrongSpell.isHit()){
-				var charCode = (typewriter.context.currentText.substr(typewriter.context.currentWithinItem,1)).charCodeAt(0) + 1;
-				var badChar = String.fromCharCode(charCode);
-				typewriter.context.currentText = $().append_in_str(typewriter.context.currentText, badChar, typewriter.context.currentWithinItem); //use jquery append plugin
-			}//End error simulation
-
+				typewriter.addErrornousChar();
+			}	else if  (typewriter.errorStack.length){
+ 			//error char in place, perform delete first.
+ 			typewriter.errorStack.pop();
+ 			var text = target.children().last().text();
+ 			target.children().last().text(text.substr(0,text.length-1));
+ 			return false;
+ 			};
 			nextElement = typewriter.context.currentText.substr(typewriter.context.currentWithinItem++, 1);
 			if (typewriter.context.currentText.length === typewriter.context.currentWithinItem){
 				typewriter.context.currentText = ""; //Reset content
@@ -80,6 +85,13 @@
 
 		target.append(nextElement);
  	};
+
+ 	typewriter.addErrornousChar = function(){
+ 				var charCode = (typewriter.context.currentText.substr(typewriter.context.currentWithinItem,1)).charCodeAt(0) + 1;
+				var badChar = String.fromCharCode(charCode);
+				typewriter.context.currentText = $().append_in_str(typewriter.context.currentText, badChar, typewriter.context.currentWithinItem); //use jquery append plugin
+				typewriter.errorStack.push(badChar);
+ 	}
 
  	typewriter.kickShow = function(){
  		//Start by creating the array of all items to walk through;
@@ -104,9 +116,10 @@
 
 
 wrongSpell = {};
-wrongSpell.errorFactor = 10;
+wrongSpell.errorFactor = 5;
 wrongSpell.isHit = function(){
-	var isHit = (Math.random()*100 < wrongSpell.errorFactor) ? true : false;
-	console.log("is going to error:" + isHit)
+	var chance =  wrongSpell.errorFactor;
+	if (typewriter.errorStack.length){ chance * 2}; //If previous item was a mistake, increase chance of error by 100%;
+	var isHit = (Math.random()*100 < chance) ? true : false;
 	return isHit;
 }
