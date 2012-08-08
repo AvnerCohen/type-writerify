@@ -1,8 +1,7 @@
  	typewriter = {};
  	typewriter.selector = {
  		name: ".content",
- 		changed : false,
- 		maxHeight : 490
+ 		changed : false
  	}
  	typewriter.errorStack = [];
  	typewriter.context = {
@@ -10,8 +9,8 @@
  		currentItem : 0,
  	 	currentWithinItem :0,
  		currentText : "",
- 		speed : 15,
- 		baseSpeed : 15,
+ 		speed : 50,
+ 		baseSpeed : 50,
  		direction : "F"
 
  	};
@@ -20,9 +19,6 @@
  	
  	typewriter.typeNext = function(){
 	var target = $(typewriter.selector.name);
-	if (!typewriter.selector.changed && target.height() > typewriter.selector.maxHeight){
-		typewriter.selector.name = ".content1";
-	}
 	var nextElement = null;
 	if (typewriter.context.speed > 0){
 		if (typewriter.context.direction == "F"){

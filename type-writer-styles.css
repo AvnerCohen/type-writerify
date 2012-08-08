@@ -42,20 +42,20 @@ button.change-speed, button.change-direction {
 }
 
 div.book {
-    background: url('./book.jpg') center no-repeat;
-    height: 558px;
-    width: 817px;
+    background: url('./winword.jpg') center no-repeat;
+    height: 534px;
+    width: 923px;
     position: relative;
-    top: 15%;
-    left: 25%;
+    top: 5%;
+    left: 5%;
 }
 
-div.content1, div.content {
+div.content {
     position: relative;
-    width: 310px;
-    top: 30px;
-    left: 60px;
-    font-size: 14px;
+	width: 760px;
+	top: 170px;
+	left: 60px;
+    font-size: 13px;
     float: left;
 }
 
