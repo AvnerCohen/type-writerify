@@ -43,18 +43,17 @@ button.change-speed, button.change-direction {
 
 div.book {
     background: url('./winword.jpg') center no-repeat;
-    height: 534px;
-    width: 923px;
+    height: 587px;
+    width: 1022px;
     position: relative;
     top: 5%;
-    left: 5%;
 }
 
 div.content {
     position: relative;
-	width: 760px;
-	top: 170px;
-	left: 60px;
+	width: 860px;
+	top: 90px;
+	left: 70px;
     font-size: 13px;
     float: left;
 }

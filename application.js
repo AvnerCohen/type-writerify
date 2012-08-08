@@ -19,7 +19,7 @@ io.configure(function() {
 });
 
 
-fs.readFile('./i-wrote-it.html', function(error, content) {
+fs.readFile('./i-wrote-it2.html', function(error, content) {
     staticLetter = content;
 
 });
