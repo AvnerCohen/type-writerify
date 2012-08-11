@@ -9,8 +9,8 @@
  		currentItem : 0,
  	 	currentWithinItem :0,
  		currentText : "",
- 		speed : 50,
- 		baseSpeed : 50,
+ 		speed : 35,
+ 		baseSpeed : 35,
  		direction : "F"
 
  	};
