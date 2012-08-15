@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
     <title>
-        Type Writer Sample
+        In-Their-Heads
     </title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -31,23 +31,22 @@
                       $(document.body).on("click", "button.change-speed", function() {
                           var speed = $(this).attr("data-speed");
  							              typewriter.context.speed = typewriter.context.baseSpeed / speed;
-                          console.log("New speed:" + speed);
                       });
                       $(document.body).on("click", "button.change-direction", function() {
                           var new_direction = $(this).attr("data-direction");
                               typewriter.setDirection(new_direction);
-                          console.log("New direction:" + new_direction);
                       });
 
-                      window.setInterval(function(){
+                 /*     window.setInterval(function(){
                         $("#data-1").text(typewriter.context.currentItem);
                         $("#data-2").text(typewriter.context.currentWithinItem);
                         $("#data-3").text(typewriter.context.direction);
-                      }, 20);
+                      }, 20);*/
                   });
     </script>
 </head>
 <body>
+<!-- <div style="position:absolute;width:80px;height:100%;overflow-y:scroll;font-size:10px;" id="aa"></div> -->
     <div id="container" dir="ltr">
         <header id="header">
             <div class="control-panel">

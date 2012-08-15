@@ -65,12 +65,12 @@
 		} else {
 			if(wrongSpell.isHit()){
 				typewriter.addErrornousChar();
-			}	else if  (typewriter.errorStack.length){
+			} else if  (typewriter.errorStack.length){
  			//error char in place, perform delete first.
- 			typewriter.errorStack.pop();
- 			var text = target.children().last().text();
- 			target.children().last().text(text.substr(0,text.length-1));
- 			return false;
+				typewriter.errorStack.pop();
+				var text = target.children().last().text();
+				target.children().last().text(text.substr(0,text.length-1));
+				return false;
  			};
 			nextElement = typewriter.context.currentText.substr(typewriter.context.currentWithinItem++, 1);
 			if (typewriter.context.currentText.length === typewriter.context.currentWithinItem){
@@ -78,7 +78,7 @@
 			}
 			target = target.children().last();
 		}
-
+		//document.getElementById("aa").innerHTML+="<br/>" + nextElement;
 		target.append(nextElement);
  	};
 
@@ -115,7 +115,7 @@ wrongSpell = {};
 wrongSpell.errorFactor = 5;
 wrongSpell.isHit = function(){
 	var chance =  wrongSpell.errorFactor;
-	if (typewriter.errorStack.length){ chance * 2}; //If previous item was a mistake, increase chance of error by 100%;
+	if (typewriter.errorStack.length){ chance * 3}; //If previous item was a mistake, increase chance of error by factor;
 	var isHit = (Math.random()*100 < chance) ? true : false;
 	return isHit;
 }
