@@ -9,8 +9,8 @@
  		currentItem : 0,
  	 	currentWithinItem :0,
  		currentText : "",
- 		speed : 35,
- 		baseSpeed : 35,
+ 		speed : 15,
+ 		baseSpeed : 15,
  		direction : "F"
 
  	};
@@ -57,13 +57,14 @@
 
  	typewriter.forward = function(target){
 
-		if(typewriter.context.currentText === ""){
+		var curLineLen = typewriter.context.currentText.length;
+		if(curLineLen == 0){
 			nextElement = typewriter.getNextElement();
 			typewriter.context.currentText = nextElement.text();
 			nextElement.text("");
 			typewriter.context.currentWithinItem = 0;
 		} else {
-			if(wrongSpell.isHit()){
+			if(typewriter.context.currentWithinItem > 2 && wrongSpell.isHit()){
 				typewriter.addErrornousChar();
 			} else if  (typewriter.errorStack.length){
  			//error char in place, perform delete first.
