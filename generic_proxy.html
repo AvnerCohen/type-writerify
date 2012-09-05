@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<head>
+    <title>
+        Type-Writerify
+    </title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" media="screen" href="./type-writer-styles.css">
+  <link href='http://fonts.googleapis.com/css?family=Courgette' rel='stylesheet' type='text/css'>
+    <script type="text/javascript" src="http://www.google.com/jsapi">
+                
+    </script>
+    <script type="text/javascript">
+                                google.load("jquery", "1");
+    </script>
+    <style>
+    body{
+      background-color:white;
+    }
+    form.centered-form{
+      background-color:#EEE;
+      width:700px;
+      position:absolute;
+      left:25%;
+      top:25%;
+      margin:50px;
+      border:10px solid #66CCFF;
+      -webkit-border-radius: 15px;
+      border-radius: 15px;
+      padding:60px;
+      text-align:center;
+      box-shadow: 10px 10px 5px #888;
+
+    }
+    input.huge-text{
+      font-size:40px;
+      width:650px;
+      -webkit-border-radius: 15px;
+    }
+    button.submit{
+      font-size:30px;
+      padding:2px;
+      margin:10px;
+    }
+    </style>
+</head>
+<body>
+    <form class="centered-form">
+      Choose Site (///Disabled for the time being, must sites won't work):
+      <input type="text" class="huge-text" name="writerURL" id="writerURL" readonly=true placeholder="https://gist.github.com/2502435" value="https://gist.github.com/2502435"/><br/>
+      <button type="submit" class="submit">Yalla!</button>
+
+    </form>
+
+    <button><a href="./singing-letter.html">Simple Approach<a/></button>
+</body>
+
+</html>
