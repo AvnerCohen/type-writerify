@@ -4,7 +4,7 @@
   "version": "0.0.2",
   "author": "Avner Cohen <israbirding@gmail.com>",
     "dependencies" : {
-        "ecstatic" : "~0.1.6",
+        "ecstatic" : "~4.1.2",
         "socket.io": "~0.9.8",
         "socket.io-client" : "0.9.8"
     },
